@@ -1,7 +1,7 @@
 Flask==2.3.3
 nltk==3.8.1
-numpy==1.22.2
-keras==2.11.0
-tensorflow==2.11.0
-gunicorn==21.2.0
-pickle-mixin==1.0.2
+numpy
+tensorflow
+keras
+gunicorn
+pickle-mixin
