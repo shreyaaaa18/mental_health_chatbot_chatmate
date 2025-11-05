@@ -13,17 +13,23 @@ nltk.download('wordnet')
 
 lemmatizer = WordNetLemmatizer()
 
-# Load model and necessary files
-model = load_model('model.h5')  # ✅ make sure this matches your training.py output
+# Load static files (JSON, pickle) at startup
 intents = json.loads(open('intents.json', encoding='utf-8').read())
 words = pickle.load(open('texts.pkl', 'rb'))
 classes = pickle.load(open('labels.pkl', 'rb'))
 
+# Model lazy loading
+model = None
+def get_model():
+    global model
+    if model is None:
+        model = load_model('model.h5')
+    return model
+
 # --- Utility functions ---
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
-    sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
-    return sentence_words
+    return [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
 
 def bow(sentence, words, show_details=True):
     sentence_words = clean_up_sentence(sentence)
@@ -36,7 +42,8 @@ def bow(sentence, words, show_details=True):
                     print(f"found in bag: {w}")
     return np.array(bag)
 
-def predict_class(sentence, model):
+def predict_class(sentence):
+    model = get_model()
     p = bow(sentence, words, show_details=False)
     res = model.predict(np.array([p]))[0]
     ERROR_THRESHOLD = 0.25
@@ -47,16 +54,16 @@ def predict_class(sentence, model):
         return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
     return return_list if return_list else [{"intent": "no-response", "probability": "0"}]
 
-def getResponse(ints, intents_json):
+def getResponse(ints):
     tag = ints[0]['intent']
-    for i in intents_json['intents']:
+    for i in intents['intents']:
         if i['tag'] == tag:
             return random.choice(i['responses'])
     return "I'm here to listen. Could you tell me a bit more about how you're feeling?"
 
 def chatbot_response(msg):
-    ints = predict_class(msg, model)
-    res = getResponse(ints, intents)
+    ints = predict_class(msg)
+    res = getResponse(ints)
     return res
 
 # --- Flask setup ---
@@ -70,7 +77,7 @@ def home():
 @app.route("/get")
 def get_bot_response():
     userText = request.args.get('msg')
-    print("User input:", userText)  # Debug line
+    print("User input:", userText)
     try:
         response = chatbot_response(userText)
         print("Bot response:", response)
