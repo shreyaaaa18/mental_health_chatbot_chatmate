@@ -1,3 +1,4 @@
+import os
 import nltk
 from nltk.stem import WordNetLemmatizer
 import json
@@ -7,17 +8,35 @@ from keras.models import load_model
 from flask import Flask, render_template, request
 import random
 
-# Load NLTK data
-nltk.download('punkt')
-nltk.download('wordnet')
+# --- NLTK setup ---
+nltk.download('punkt', quiet=True)
+nltk.download('wordnet', quiet=True)
 
 lemmatizer = WordNetLemmatizer()
 
-# Load model and necessary files
-model = load_model('model.h5')  # ✅ make sure this matches your training.py output
-intents = json.loads(open('intents.json', encoding='utf-8').read())
-words = pickle.load(open('texts.pkl', 'rb'))
-classes = pickle.load(open('labels.pkl', 'rb'))
+# --- Load model and data with full paths ---
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+try:
+    model = load_model(os.path.join(BASE_DIR, 'model.h5'))
+    print("Model loaded successfully")
+except Exception as e:
+    import traceback
+    traceback.print_exc()
+    print("Failed to load model:", e)
+
+try:
+    with open(os.path.join(BASE_DIR, 'texts.pkl'), 'rb') as f:
+        words = pickle.load(f)
+    with open(os.path.join(BASE_DIR, 'labels.pkl'), 'rb') as f:
+        classes = pickle.load(f)
+    with open(os.path.join(BASE_DIR, 'intents.json'), 'r', encoding='utf-8') as f:
+        intents = json.load(f)
+    print("Pickle and JSON files loaded successfully")
+except Exception as e:
+    import traceback
+    traceback.print_exc()
+    print("Failed to load data files:", e)
 
 # --- Utility functions ---
 def clean_up_sentence(sentence):
@@ -38,13 +57,11 @@ def bow(sentence, words, show_details=True):
 
 def predict_class(sentence, model):
     p = bow(sentence, words, show_details=False)
-    res = model.predict(np.array([p]))[0]
+    res = model.predict(np.array([p]), verbose=0)[0]
     ERROR_THRESHOLD = 0.25
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
     results.sort(key=lambda x: x[1], reverse=True)
-    return_list = []
-    for r in results:
-        return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
+    return_list = [{"intent": classes[r[0]], "probability": str(r[1])} for r in results]
     return return_list if return_list else [{"intent": "no-response", "probability": "0"}]
 
 def getResponse(ints, intents_json):
@@ -70,7 +87,7 @@ def home():
 @app.route("/get")
 def get_bot_response():
     userText = request.args.get('msg')
-    print("User input:", userText)  # Debug line
+    print("User input:", userText)
     try:
         response = chatbot_response(userText)
         print("Bot response:", response)
@@ -80,5 +97,7 @@ def get_bot_response():
         traceback.print_exc()
         return "Error: " + str(e)
 
+# --- Run on Render ---
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))  # Render assigns PORT
+    app.run(host="0.0.0.0", port=port)
