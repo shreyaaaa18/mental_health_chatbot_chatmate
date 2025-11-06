@@ -2,6 +2,33 @@
 
 Live Demo: https://mental-health-chatbot-chatmate-1.onrender.com/
 
+<img width="1554" height="943" alt="image" src="https://github.com/user-attachments/assets/bebe0fab-639f-4d3f-bb37-7b1093342632" />
+<img width="1085" height="849" alt="image" src="https://github.com/user-attachments/assets/97d0a984-1027-4fb9-aee8-4a38d25ed9ed" />
+
+💬 Example Questions to Ask
+
+🧠 Mental Health Related
+
+	What is depression
+	What are the symptoms of anxiety
+	I am stressed
+	Why do I feel sad all the time
+	I’m afraid I’ll fail again
+
+❤️ Emotional Support
+
+	I hate myself
+	No one likes me
+	I can’t do this anymore
+	I’m losing my mind
+
+🌤️ Casual Conversations
+
+	Hi
+	Good morning
+	How are you
+	What’s your name
+
 **📄 Abstract**
 
 With the increasing prevalence of mental health issues, there is a growing need for accessible and effective support tools. Chatbots powered by artificial intelligence offer a promising avenue for providing mental health support in a convenient and non-judgmental manner.
