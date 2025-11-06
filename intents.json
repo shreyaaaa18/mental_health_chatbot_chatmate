@@ -37,9 +37,31 @@
     },
     {"tag": "about",
      "patterns": ["Who are you?", "What are you?", "Who you are?", "Tell me more about yourself.", "What is your name?", "What should I call you?", "What's your name?", "Tell me about yourself" ],
-     "responses": ["I'm Pandora, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm Pandora, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm Pandora. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me Pandora.", "I'm Pandora!", "Call me Pandora"]
+     "responses": ["I'm Chatmate, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm Chatmate, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm Chatmate. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me Chatmate.", "I'm Chatmate!", "Call me Chatmate"]
     },
-
+    {
+      "tag": "i-am-good-for-nothing",
+      "patterns": ["I am good for nothing.", "i am good for nothing!"],
+      "responses": ["Don't think you can't achieve your goals. You are capable. Remember: everything you can imagine is real."]
+    },
+    {
+      "tag": "i-am-feeling-stressed",
+      "patterns": ["I am feeling stressed lately","stressed","i am stressed out",
+      "feeling stressed",
+      "so stressed",
+      "i feel stress","stress"],
+      "responses": ["Listening to music can calm your mind. Visit https://www.spotify.com and enjoy your favorite tunes."]
+    },
+    {
+      "tag": "i-want-to-kill-myself",
+      "patterns": ["I want to kill myself"],
+      "responses": ["Help is available. You can contact a counselor. For example, Befrienders Kenya helpline: +254 722 178 177. You matter."]
+    },
+    {
+      "tag": "i-am-afraid-i-will-fail",
+      "patterns": ["I am afraid I will fail again"],
+      "responses": ["Failure is a stepping stone to success. Your hard work and determination will help you reach your goals."]
+    },
    {"tag": "what is depression?",
       "patterns": [
           "what is depression?"
@@ -82,11 +104,11 @@
         "responses": ["That's geat to hear. I'm glad you're feeling this way.", "Oh i see. That's great.", "Did something happen which made you feel this way?"]
     },
     {"tag": "casual",
-        "patterns": ["Oh I see.", "ok", "okay", "nice", "Whatever", "K", "Fine", "yeah", "yes", "no", "not really"],
+        "patterns": ["Oh I see.", "ok", "okay", "nice", "Whatever", "K", "Fine", "yeah", "yes", "no", "not really","hmm"],
         "responses": ["Let's discuss further why you're feeling this way.", "How were you feeling last week?", "I'm listening. Please go on.", "Tell me more", "Can you elaborate on that?", "Come Come elucidate your thoughts"]
     },
     {"tag": "anxious",
-        "patterns": ["I feel so anxious.", "I'm so anxious because of "],
+        "patterns": ["I feel so anxious.", "I'm so anxious because of ","anxious"],
         "responses": ["Don't be hard on yourself. What's the reason behind this?", "Can you tell me more about this feeling?", "I understand that it can be scary. Tell me more about it.", "Don't let the little worries bring you down. What's the worse that can happen?"]
     },
     {"tag": "not-talking",
@@ -114,7 +136,7 @@
         "responses": ["I heard you & noted it all. See you later.", "Oh okay we're done for today then. See you later", "I hope you have a great day. See you soon", "Okay we're done. Have a great day", "Okay I see. Enjoy the rest of your day then"]
     },
     {"tag": "suicide",
-        "patterns": ["I want to kill myself", "I've thought about killing myself.", "I want to die", "I am going to kill myself", "I am going to commit suicide"],
+        "patterns": ["I want to kill myself", "I've thought about killing myself.", "I want to die", "I am going to kill myself", "I am going to commit suicide","kill","suicide"],
         "responses": ["I'm very sorry to hear that but you have so much to look forward to. Please seek help by contacting: 9152987821."]
     },
     {"tag": "hate-you",
@@ -122,7 +144,7 @@
         "responses": ["I'm sorry if i offended you in anyway. I'm only here to help", "Forgive me if i did anything to offend you. I only want to help"]
     },
     {"tag": "hate-me",
-        "patterns": ["You hate me", "I know you hate me", "You don't like me"],
+        "patterns": ["You hate me", "I know you hate me", "You don't like me","hate"],
         "responses": ["Why do you think so?", "I'm sorry if i have exhibited any sort of behaviour to make you think that."]
     },
     {"tag": "default",
@@ -150,7 +172,7 @@
         "responses": ["Duh I live in your computer", "Everywhere", "Somewhere in the universe" ]
     },
     {"tag": "something-else",
-        "patterns": ["I want to talk about something else", "Let's talk about something else.", "Can we not talk about this?", "I don't want to talk about this."],
+        "patterns": ["I want to talk about something else", "Let's talk about something else.", "Can we not talk about this?", "I don't want to talk about this.","I don't know","idk"],
         "responses": ["Okay sure. What do you want to talk about?", "Alright no problem. Is there something you want to talk about?", "Is there something else that you want to talk about?"]
     },
     {"tag": "friends",
@@ -247,7 +269,7 @@
     },
     {"tag": "fact-13",
         "patterns": ["What should I do if I know someone who appears to have the symptoms of a mental disorder?"],
-        "responses": ["Although Pandora cannot substitute for professional advice, we encourage those with symptoms to talk to their friends and family members and seek the counsel of a mental health professional. The sooner the mental health condition is identified and treated, the sooner they can get on the path to recovery. If you know someone who is having problems, don't assume that the issue will resolve itself. Let them know that you care about them, and that there are treatment options available that will help them heal. Speak with a mental health professional or counselor if you think your friend or family member is experiencing the symptoms of a mental health condition. If the affected loved one knows that you support them, they will be more likely to seek out help."]
+        "responses": ["Although Chatmate cannot substitute for professional advice, we encourage those with symptoms to talk to their friends and family members and seek the counsel of a mental health professional. The sooner the mental health condition is identified and treated, the sooner they can get on the path to recovery. If you know someone who is having problems, don't assume that the issue will resolve itself. Let them know that you care about them, and that there are treatment options available that will help them heal. Speak with a mental health professional or counselor if you think your friend or family member is experiencing the symptoms of a mental health condition. If the affected loved one knows that you support them, they will be more likely to seek out help."]
     },
     {"tag": "fact-14",
         "patterns": ["How can I find a mental health professional for myself or my child?"],
