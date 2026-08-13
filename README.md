@@ -117,7 +117,7 @@ Mental health is a sensitive and critical topic - if you are in crisis, please s
 
 🔬 **Research Publication**
 
-		📘 Mental Health Chatbot for Depression Report Analysis Using Machine Learning Approach
+		📘 Mental Health Chatbot for Depression Analysis Using Machine Learning Approach
 		Authors: Manasvi Dawane, Shreya Sonar, Ketaki Kute, Yash Joshi
 		Publication Date: November 23, 2023
 
